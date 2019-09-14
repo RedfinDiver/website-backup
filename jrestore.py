@@ -135,7 +135,7 @@ text = """
  taekwondo-uttendorf.at - [uttendorf]
 taekwondo-innviertel.at - [tgi]
        taekwondo-ooe.at - [ooetdv]
-   magique-cometique.at - [magcos]
+  magique-cosmetique.at - [magcos]
 -------------------------------------
     alle oben stehenden - [a]
               abbrechen - [x]
