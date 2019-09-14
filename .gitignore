@@ -1,0 +1,5 @@
+*.pyc
+.vscode
+backup.cfg
+restore.cfg
+__pycache__
