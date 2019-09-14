@@ -128,9 +128,9 @@ def source_paths(cfg, section_to_parse):
 cfg = ConfigParser(allow_no_value=True, interpolation=ExtendedInterpolation())
 cfg.read("restore.cfg")
 
-text = """
+restore_text = """
 =====================================
-    Website Wiederherstellung
+          Website RESTORE
 =====================================
  taekwondo-uttendorf.at - [uttendorf]
 taekwondo-innviertel.at - [tgi]
@@ -147,7 +147,7 @@ restore_target_paths = source_paths(cfg, "restore_target_paths")
 
 while True:
     os.system("clear")
-    print(text)
+    print(restore_text)
     cmd = input("Wählen Sie eine Option: ").lower()
     os.system("clear")
 
@@ -155,7 +155,7 @@ while True:
     if cmd == "x":
         break
     # valid single restore command
-    elif not cmd == "alle" and cmd in restore_source_paths:
+    elif not cmd == "a" and cmd in restore_source_paths:
         os.system("clear")
         print("Auswahl: ", cmd)
         source = restore_source_paths[cmd]
