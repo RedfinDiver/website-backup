@@ -27,7 +27,8 @@ class JRestore:
         self.restore_folder = target
         self.replaces = {
             "$db": f"'{self.restore_name}'",
-            "$log_path": "'" + os.path.join(self.restore_folder, "logs") + "'",
+            "$log_path": "'/shared/httpd/" + self.restore_name + "/htdocs/logs'",
+            "$tmp_path": "'/shared/httpd/" + self.restore_name + "/htdocs/tmp'",
             "$password": "''",
             "$user": "'root'",
             "$host": "'mysql'",
