@@ -45,30 +45,15 @@ class JBackup:
         )
         return bk_cmd
 
-
-###############################################################################
-##################### Script section of this file #############################
-###############################################################################
-
-
-# def backup_vars(cfg):
-#     """Get backup variables from configuration object"""
-#     backup_vars = {}
-#     for section in cfg.sections():
-#         paras = {}
-#         for key in cfg[section]:
-#             para = {key: cfg[section][key]}
-#             paras.update(para)
-#         backup_vars.update({section: paras})
-#     return backup_vars
-
-
 def print_success(value, cmd):
     if value == 0:
         print(f"Backuperstellung für '{cmd}' erfolgreich.")
     else:
         print(f"Fehler bei der Backuperstellung für '{cmd}'")
 
+###############################################################################
+##################### Script section of this file #############################
+###############################################################################
 
 cfg = ConfigParser(allow_no_value=True, interpolation=ExtendedInterpolation())
 cfg.read("backup.cfg")
