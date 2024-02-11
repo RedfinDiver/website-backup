@@ -12,8 +12,6 @@ import shutil
 import tempfile
 from datetime import datetime as time
 
-import dropbox
-
 # parsing arguments
 parser = argparse.ArgumentParser()
 parser.add_argument("folder_to_backup", help="The folder to backup")
@@ -21,7 +19,6 @@ parser.add_argument("folder_for_backup", help="The folder to store the backup")
 parser.add_argument("db_user", help="Name of database user")
 parser.add_argument("db_password", help="Password for the database")
 parser.add_argument("db_name", help="Name of the database")
-parser.add_argument("dbx_token", help="Dropbox access token")
 args = parser.parse_args()
 
 # preferences
@@ -31,8 +28,6 @@ archives_to_keep = 12
 bak_name = os.path.basename(args.folder_to_backup)
 zip_file_name = bak_name + "_" + time.now().strftime("%Y-%m-%d")
 zip_file = os.path.join(args.folder_for_backup, zip_file_name)
-dropbox_folder = "/Backup/websitebackups/" + bak_name + "/"
-dropbox_file_path = dropbox_folder + zip_file_name + ".zip"
 
 # check for archive folder
 if not os.path.exists(args.folder_for_backup):
@@ -50,12 +45,6 @@ with tempfile.TemporaryDirectory() as working_dir:
     os.system(dump_cmd)
     shutil.make_archive(zip_file, "zip", wd)
 
-# upload to dropbox
-dbx = dropbox.Dropbox(args.dbx_token)
-with open(zip_file + ".zip", "rb") as f:
-    dbx.files_upload(f.read(), dropbox_file_path)
-
-
 # define function for housekeeping
 def delete_old_files(path, files_to_keep):
     mtime = lambda f: os.stat(os.path.join(path, f)).st_mtime
@@ -68,13 +57,3 @@ def delete_old_files(path, files_to_keep):
 
 # housekeeping on webserver
 delete_old_files(args.folder_for_backup, archives_to_keep)
-
-# housekeeping on dropbox
-dbf = dropbox.files
-sm = lambda f: f.server_modified
-files = sorted(dbx.files_list_folder(dropbox_folder).entries, key=sm)
-
-if len(files) > archives_to_keep:
-    dfiles = list(files[0 : len(files) - archives_to_keep])
-    files_to_delete = [dbf.DeleteArg(f.path_lower) for f in dfiles]
-    dbx.files_delete_batch(files_to_delete)
