@@ -61,7 +61,7 @@ class JRestore:
 
         sql_file = os.path.join(self.restore_folder, self.restore_name + ".sql")
         os.system(
-            f"cat {sql_file} | docker exec -i devilbox_mysql_1 "
+            f"cat {sql_file} | docker exec -i devilbox-mysql-1 "
             f"/usr/bin/mysql -u root {self.restore_name}"
         )
 
