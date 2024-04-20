@@ -3,7 +3,6 @@
 import os
 import time
 from configparser import ConfigParser, ExtendedInterpolation
-
 import paramiko
 
 
@@ -41,7 +40,6 @@ class JBackup:
             f"{cfg['default']['backup_base']}{cmd} "
             f"{cfg['default']['backup_target_base']}{cmd} "
             f"{cfg[cmd]['dbuser']} {cfg[cmd]['dbpass']} {cfg[cmd]['db']} "
-            f"{cfg['default']['dbx_token']}"
         )
         return bk_cmd
 

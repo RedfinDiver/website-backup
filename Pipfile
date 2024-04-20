@@ -4,12 +4,11 @@ url = "https://pypi.org/simple"
 verify_ssl = true
 
 [packages]
-dropbox = "*"
 mysql-connector-python = "*"
 paramiko = "*"
 
 [requires]
-python_version = "3.10"
+python_version = "3.11"
 
 [dev-packages]
 pep8 = "*"
