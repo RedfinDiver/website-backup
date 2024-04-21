@@ -1,0 +1,27 @@
+name: 
+recipe: joomla
+proxy:
+  appserver:
+    - .local
+  pma:
+    - pma.local
+  mailhog:
+    - mailhog.local
+config:
+  php: '8.2'
+  via: apache
+services:
+  database:
+    type: 
+    portforward: 3306
+    creds:
+      user: admin
+      password: admin
+      database: 
+  pma:
+    type: phpmyadmin
+  mailhog:
+    type: mailhog
+    portforward: 1025
+    hogfrom:
+      - appserver

@@ -1,19 +1,13 @@
 [[source]]
-name = "pypi"
 url = "https://pypi.org/simple"
 verify_ssl = true
+name = "pypi"
 
 [packages]
-mysql-connector-python = "*"
 paramiko = "*"
+pyyaml = "*"
+
+[dev-packages]
 
 [requires]
 python_version = "3.11"
-
-[dev-packages]
-pep8 = "*"
-black = "*"
-pylint = "*"
-
-[pipenv]
-allow_prereleases = true

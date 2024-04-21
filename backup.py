@@ -6,7 +6,7 @@ from configparser import ConfigParser, ExtendedInterpolation
 import paramiko
 
 
-class JBackup:
+class Backup:
     """Backup of a Joomla! install via ssh
 
     This needs the backup_on_server.py script on the webserver
@@ -70,7 +70,7 @@ taekwondo-innviertel.at - [tgi]
 -------------------------------------
 """
 
-bk = JBackup(
+bk = Backup(
     cfg["default"]["host"], cfg["default"]["user"], cfg["default"]["ssh_key_file"]
 )
 

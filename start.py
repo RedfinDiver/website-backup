@@ -8,20 +8,20 @@ import time
 # Entry point for websitebackup
 start_text = """
 ========================
-Willkommen zum Website
+  Welcome to website
     Backup/Restore
 ========================
     Backup  - [b]
     Restore - [r]
 ------------------------
-  abbrechen - [x]
+     cancel - [x]
 """
 
 
 def startup():
     os.system("clear")
     print(start_text)
-    cmd = input("Was wollen Sie tun?: ").lower()
+    cmd = input("What would you like to to?: ").lower()
     os.system("clear")
     return cmd
 
@@ -30,23 +30,23 @@ while True:
     cmd = startup()
 
     if cmd == "x":
-        print("Das Programm wird beendet!")
+        print("Program stopping!")
         time.sleep(1)
         break
 
     elif cmd == "b":
-        if "jbackup" not in sys.modules:
-            import jbackup
+        if "backup" not in sys.modules:
+            import backup as backup
         else:
-            importlib.reload(jbackup)
+            importlib.reload(backup)
 
     elif cmd == "r":
-        if "jrestore" not in sys.modules:
-            import jrestore
+        if "restore" not in sys.modules:
+            import restore
         else:
-            importlib.reload(jrestore)
+            importlib.reload(restore)
 
     else:
         os.system("clear")
-        print("kein gültiges Kommando")
+        print("no valid command")
         time.sleep(2)
