@@ -87,6 +87,16 @@ class Restore:
         sql_file = self.restore_name + ".sql"
 
         os.chdir(self.restore_folder)
+
+        # Quick fix, delete first line of mariadb dump
+        # see https://mariadb.org/mariadb-dump-file-compatibility-change/
+
+        with open(sql_file, "r", encoding="utf-8") as file:
+            lines = file.readlines()
+
+        with open(sql_file, "w", encoding="utf-8") as file:
+            file.writelines(lines[1:])
+
         os.system(f"lando db-import {sql_file}")
 
         print("Database was imported in lando app!")
