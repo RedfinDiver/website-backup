@@ -7,6 +7,7 @@ import time
 import webbrowser
 from configparser import ConfigParser, ExtendedInterpolation
 import yaml
+import subprocess
 
 
 class Restore:
@@ -77,8 +78,9 @@ class Restore:
     def start_lando(self):
         """Starting lando app"""
         os.chdir(self.restore_folder)
-        os.system(f"lando poweroff")
-        os.system(f"lando start")
+        subprocess.run(["lando", "destroy", "-y"])
+        subprocess.run(["lando", "poweroff"])
+        subprocess.run(["lando", "start"])
         print("Lando app started!")
         time.sleep(2)
 
