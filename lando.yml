@@ -11,6 +11,8 @@ config:
   php: '8.2'
   via: apache
 services:
+  appserver:
+    scanner: false
   database:
     type: 
     portforward: 3306
